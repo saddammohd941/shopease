@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/shopease</property>
+        <property name="hibernate.connection.username">postgres</property> <!-- Replace with your actual username -->
+        <property name="hibernate.connection.password">your_password</property> <!-- Replace with your actual password -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <property name="hibernate.show_sql">true</property>
+        <mapping class="com.shopease.entity.User"/>
+        <mapping class="com.shopease.entity.Product"/>
+        <mapping class="com.shopease.entity.Order"/>
+        <mapping class="com.shopease.entity.OrderItem"/>
+        <mapping class="com.shopease.entity.Review"/>
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,16 @@
+# Maven
+target/
+*.war
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+
+# Logs
+*.log
+
+# Node.js (if using React)
+node_modules/
+dist/
+build/

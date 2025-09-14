@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopEase - Support</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .hero-bg { background: linear-gradient(to bottom right, #1e1e1e, #2c2c2c); }
+    input:focus, textarea:focus { outline: none; box-shadow: 0 0 0 3px rgba(220,38,38,0.3); border-color: #dc2626; }
+    .toast { transition: opacity 0.3s ease, transform 0.3s ease; }
+    .toast-hidden { opacity: 0; transform: translateY(20px); }
+    .toast-visible { opacity: 1; transform: translateY(0); }
+    .spinner { border: 3px solid #f3f3f3; border-top: 3px solid #dc2626; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; display: inline-block; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-gray-800 shadow-sm sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div class="flex items-center">
+        <img src="logo.png" alt="ShopEase Logo" class="h-10 w-auto" />
+        <h1 class="text-3xl font-bold text-red-600 ml-3">ShopEase</h1>
+      </div>
+      <nav class="flex items-center space-x-6">
+        <a href="index.html" class="text-gray-300 hover:text-white font-medium">Sign In</a>
+        <a href="products.html" class="text-gray-300 hover:text-white font-medium">Shop</a>
+        <a href="support.html" class="text-gray-300 hover:text-white font-medium">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-bg py-16 text-white text-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold mb-4">Contact Support</h2>
+      <p class="text-lg mb-6">We're here to help with any issues</p>
+    </div>
+  </section>
+
+  <!-- Support Form -->
+  <main class="max-w-md mx-auto my-12 px-4 sm:px-6 lg:px-8">
+    <div class="bg-gray-800 rounded-lg shadow-lg p-8">
+      <h2 class="text-2xl font-semibold text-center mb-2">Contact Support</h2>
+      <p class="text-center text-gray-300 text-sm mb-6">We're here to help with any issues</p>
+      <form id="support-form" class="space-y-6">
+        <div>
+          <label for="support-name" class="block text-sm font-medium text-gray-300 mb-1">Name</label>
+          <input type="text" id="support-name" class="w-full bg-gray-700 border border-gray-600 rounded-md p-3 text-sm text-white focus:ring-red-500 focus:border-red-600" required />
+        </div>
+        <div>
+          <label for="support-email" class="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
+          <input type="email" id="support-email" class="w-full bg-gray-700 border border-gray-600 rounded-md p-3 text-sm text-white focus:ring-red-500 focus:border-red-600" required />
+        </div>
+        <div>
+          <label for="support-message" class="block text-sm font-medium text-gray-300 mb-1">Message</label>
+          <textarea id="support-message" class="w-full bg-gray-700 border border-gray-600 rounded-md p-3 text-sm text-white focus:ring-red-500 focus:border-red-600" rows="5" required></textarea>
+        </div>
+        <div id="support-error" class="text-red-500 text-sm hidden mt-1"></div>
+        <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-md hover:bg-red-700 transition flex items-center justify-center">
+          <span id="support-button-text">Submit</span>
+          <span id="support-spinner" class="spinner hidden ml-2"></span>
+        </button>
+      </form>
+      <p class="text-center text-gray-300 text-sm mt-6">
+        Need to sign in? <a href="index.html" class="text-red-600 hover:underline">Sign in now</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast toast-hidden fixed bottom-6 right-6 px-6 py-3 rounded-md shadow-lg z-50 text-white"></div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 text-center py-6 mt-12">
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold text-white">ShopEase</h3>
+          <p class="text-sm text-gray-300 mt-2">Your one-stop shop for premium products with seamless shopping experiences.</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-white">Quick Links</h3>
+          <ul class="mt-2 space-y-2 text-sm text-gray-300">
+            <li><a href="index.html" class="hover:text-red-600">Sign In</a></li>
+            <li><a href="products.html" class="hover:text-red-600">Shop</a></li>
+            <li><a href="support.html" class="hover:text-red-600">Support</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-white">Connect</h3>
+          <div class="mt-2 flex space-x-4">
+            <a href="#" class="hover:text-red-600">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+            </a>
+            <a href="#" class="hover:text-red-600">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.06-4.3 2.7-8 7-8 1.8 0 3.5.7 4.7 2z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 border-t pt-6 text-sm">
+        &copy; 2025 ShopEase. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Toast Notification
+    function showToast(message, bgClass = 'bg-red-600') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast toast-visible fixed bottom-6 right-6 px-6 py-3 rounded-md shadow-lg z-50 text-white ${bgClass}`;
+      setTimeout(() => {
+        toast.classList.remove('toast-visible');
+        toast.classList.add('toast-hidden');
+      }, 3000);
+    }
+
+    // Support Form Submission (Placeholder)
+    document.getElementById('support-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const errorDiv = document.getElementById('support-error');
+      const buttonText = document.getElementById('support-button-text');
+      const spinner = document.getElementById('support-spinner');
+
+      errorDiv.classList.add('hidden');
+      buttonText.classList.add('hidden');
+      spinner.classList.remove('hidden');
+
+      setTimeout(() => {
+        spinner.classList.add('hidden');
+        buttonText.classList.remove('hidden');
+        showToast('Support request submitted!', 'bg-green-500');
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
