@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopEase - Profile</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .stylish-heading { font-family: 'Montserrat', 'Inter', sans-serif; letter-spacing: 1px; }
+    .tab-active { border-bottom: 2px solid #ef4444; color: #ef4444; }
+    .progress-bar { background: linear-gradient(90deg, #ef4444 70%, #d1d5db 70%); }
+  </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-gray-800 shadow-sm sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div class="flex items-center">
+        <img src="logo.png" alt="ShopEase Logo" class="h-10 w-auto" />
+        <h1 class="text-3xl font-bold text-red-600 ml-3">ShopEase</h1>
+      </div>
+      <nav class="flex items-center space-x-6">
+        <a href="products.html" class="text-gray-300 hover:text-white font-medium">Shop</a>
+        <a href="support.html" class="text-gray-300 hover:text-white font-medium">Support</a>
+        <a href="profile.html" class="text-red-600 font-bold">Profile</a>
+        <a href="cart.html" class="relative text-gray-300 hover:text-white font-medium flex items-center" aria-label="Cart">
+          <svg class="w-6 h-6 mr-1 text-red-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61l1.38-7.39H6"></path>
+          </svg>
+          Cart
+        </a>
+        <a href="purchase-history.html" class="relative text-gray-300 hover:text-white font-medium flex items-center" aria-label="Purchase History">
+          <svg class="w-6 h-6 mr-1 text-red-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>
+          </svg>
+          Purchase History
+        </a>
+        <a href="faq.html" class="text-gray-300 hover:text-white font-medium">Help/FAQ</a>
+        <!-- Notifications -->
+        <button class="relative text-gray-300 hover:text-white" aria-label="Notifications" title="Notifications">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+          </svg>
+          <span class="absolute top-0 right-0 bg-red-600 text-white rounded-full px-1 text-xs">3</span>
+        </button>
+        <!-- Dark Mode Toggle -->
+        <button id="dark-mode-toggle" class="ml-2 text-gray-300 hover:text-white" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 3v1m0 16v1m8.485-8.485l-.707.707M4.222 4.222l-.707.707M21 12h-1M4 12H3m16.485 4.485l-.707-.707M4.222 19.778l-.707-.707"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Accessibility Controls -->
+  <div class="fixed bottom-4 left-4 bg-gray-800 p-2 rounded shadow flex space-x-2 z-50">
+    <button onclick="document.body.style.fontSize='16px'" class="text-white" aria-label="Small Font">A-</button>
+    <button onclick="document.body.style.fontSize='20px'" class="text-white" aria-label="Large Font">A+</button>
+    <button onclick="document.body.classList.toggle('contrast')" class="text-white" aria-label="High Contrast">☀️</button>
+  </div>
+
+  <!-- Floating Support Chat Button -->
+  <button class="fixed bottom-8 right-8 bg-red-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-red-700 flex items-center z-50" aria-label="Chat Support">
+    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+    </svg>
+    Chat Support
+  </button>
+
+  <!-- Loyalty Points/Wallet & Progress Bar -->
+  <div class="flex justify-between items-center mt-4 mb-4 max-w-2xl mx-auto">
+    <div class="bg-gray-700 rounded-lg px-4 py-2 flex items-center" title="Wallet Balance">
+      <svg class="w-6 h-6 text-yellow-400 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 8v4l3 3"/>
+      </svg>
+      <span class="font-semibold text-white">Wallet: ₹500</span>
+    </div>
+    <div class="bg-gray-700 rounded-lg px-4 py-2 flex flex-col items-center" title="Loyalty Points">
+      <div class="flex items-center">
+        <svg class="w-6 h-6 text-green-400 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+        </svg>
+        <span class="font-semibold text-white">Points: 1200/2000</span>
+      </div>
+      <div class="w-32 h-2 rounded-full bg-gray-600 mt-2 progress-bar"></div>
+      <span class="text-xs text-yellow-400 mt-1">Gold Member</span>
+    </div>
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="bg-gray-700 rounded-lg px-4 py-2 mb-4 max-w-2xl mx-auto flex justify-between">
+    <span class="text-gray-300">Last login: 2025-09-14 10:23 AM</span>
+    <span class="text-gray-300">Last order: iPhone 17 (2025-09-01)</span>
+  </div>
+
+  <!-- Tabs for Profile Sections -->
+  <div class="max-w-2xl mx-auto">
+    <div class="flex border-b border-gray-700 mb-4">
+      <button class="tab-active px-4 py-2 font-semibold bg-transparent focus:outline-none" id="tab-profile">Profile</button>
+      <button class="px-4 py-2 font-semibold text-gray-300 bg-transparent focus:outline-none" id="tab-payment">Payment</button>
+      <button class="px-4 py-2 font-semibold text-gray-300 bg-transparent focus:outline-none" id="tab-recommend">Recommendations</button>
+      <button class="px-4 py-2 font-semibold text-gray-300 bg-transparent focus:outline-none" id="tab-offers">Offers</button>
+    </div>
+    <!-- Profile Tab -->
+    <div id="section-profile">
+      <div class="bg-gray-800 rounded-lg shadow-lg p-8">
+        <h2 class="text-3xl font-bold text-white stylish-heading mb-6 text-center">Welcome, <span id="profile-name">User</span>!</h2>
+        <div class="flex flex-col items-center">
+          <label for="profile-image-upload" class="cursor-pointer relative">
+            <img id="profile-avatar" src="https://ui-avatars.com/api/?name=User&background=ef4444&color=fff&size=128" alt="Profile Avatar" class="rounded-full mb-4 shadow-lg border-4 border-red-600 w-32 h-32 object-cover" />
+            <span class="absolute bottom-2 right-2 bg-red-600 text-white px-2 py-1 rounded text-xs">Change</span>
+            <input type="file" id="profile-image-upload" accept="image/*" class="hidden" />
+          </label>
+          <input type="text" id="edit-name" class="bg-gray-700 text-white px-4 py-2 rounded mb-2 mt-2 text-center font-semibold" value="User Name" />
+          <input type="email" id="edit-email" class="bg-gray-700 text-white px-4 py-2 rounded mb-2 text-center" value="user@email.com" />
+          <input type="text" id="edit-address" class="bg-gray-700 text-white px-4 py-2 rounded mb-2 text-center" value="123 Main Street, Mumbai, India" />
+          <button class="bg-red-600 text-white px-6 py-2 rounded-md font-medium hover:bg-red-700 transition mb-4" id="save-profile">Save Changes</button>
+        </div>
+        <!-- Delivery Address Map Preview -->
+        <div class="mt-8">
+          <h4 class="text-lg font-bold text-white stylish-heading mb-2">Delivery Address</h4>
+          <iframe
+            width="100%"
+            height="200"
+            style="border:0; border-radius:8px; margin-top:1rem;"
+            loading="lazy"
+            allowfullscreen
+            src="https://www.google.com/maps?q=Mumbai+India&output=embed">
+          </iframe>
+        </div>
+      </div>
+    </div>
+    <!-- Payment Tab -->
+    <div id="section-payment" class="hidden">
+      <div class="bg-gray-800 rounded-lg shadow-lg p-8">
+        <h2 class="text-2xl font-bold text-white stylish-heading mb-6 text-center">Payment Details</h2>
+        <div class="bg-gray-700 rounded-lg p-6 shadow space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-gray-300 font-medium">Saved Cards</span>
+            <button class="bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700 transition text-sm">Add Card</button>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between bg-gray-800 rounded px-4 py-2">
+              <div class="flex items-center space-x-3">
+                <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa" class="h-6 w-6" />
+                <span class="text-gray-200">**** **** **** 1234</span>
+              </div>
+              <button class="text-red-400 hover:underline text-sm">Remove</button>
+            </div>
+            <div class="flex items-center justify-between bg-gray-800 rounded px-4 py-2">
+              <div class="flex items-center space-x-3">
+                <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" alt="Mastercard" class="h-6 w-6" />
+                <span class="text-gray-200">**** **** **** 5678</span>
+              </div>
+              <button class="text-red-400 hover:underline text-sm">Remove</button>
+            </div>
+          </div>
+          <div class="mt-4">
+            <span class="text-gray-300 font-medium">UPI Linked</span>
+            <div class="flex items-center justify-between bg-gray-800 rounded px-4 py-2 mt-2">
+              <span class="text-gray-200">user@upi</span>
+              <button class="text-red-400 hover:underline text-sm">Remove</button>
+            </div>
+            <button class="bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700 transition text-sm mt-2">Add UPI</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Recommendations Tab -->
+    <div id="section-recommend" class="hidden">
+      <div class="bg-gray-800 rounded-lg shadow-lg p-8">
+        <h2 class="text-2xl font-bold text-white stylish-heading mb-6 text-center">Recommended for You</h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-gray-700 rounded-lg p-4 flex flex-col items-center">
+            <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/n/i/n/-original-imagzjhwtf2gqgnh.jpeg?q=70" class="w-20 h-20 rounded mb-2" alt="Product" />
+            <span class="text-white font-medium">iPhone 17 Pro Max</span>
+            <span class="text-red-400 font-bold">₹1,29,999</span>
+            <button class="bg-red-600 text-white px-4 py-1 rounded mt-2 hover:bg-red-700">Add to Cart</button>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4 flex flex-col items-center">
+            <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/shoe/2/8/7/air-max-nike-original-imagzjhwgqgnh.jpeg?q=70" class="w-20 h-20 rounded mb-2" alt="Product" />
+            <span class="text-white font-medium">Nike Air Max Shoes</span>
+            <span class="text-red-400 font-bold">₹7,499</span>
+            <button class="bg-red-600 text-white px-4 py-1 rounded mt-2 hover:bg-red-700">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Offers Tab -->
+    <div id="section-offers" class="hidden">
+      <div class="bg-gray-800 rounded-lg shadow-lg p-8">
+        <h2 class="text-2xl font-bold text-white stylish-heading mb-6 text-center">Active Offers</h2>
+        <div class="bg-yellow-400 text-gray-900 rounded-lg p-4 font-semibold">
+          Get 10% off on all electronics! Use code <span class="bg-white px-2 py-1 rounded">SHOP10</span>
+        </div>
+        <div class="bg-yellow-400 text-gray-900 rounded-lg p-4 font-semibold mt-4">
+          Free delivery on orders above ₹999!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-400 text-center py-6 mt-12">
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <div class="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+        &copy; 2025 ShopEase. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts for tabs, dark mode, profile image, and inline editing -->
+  <script>
+    // Tabs
+    const tabs = [
+      { btn: 'tab-profile', section: 'section-profile' },
+      { btn: 'tab-payment', section: 'section-payment' },
+      { btn: 'tab-recommend', section: 'section-recommend' },
+      { btn: 'tab-offers', section: 'section-offers' }
+    ];
+    tabs.forEach(({btn, section}) => {
+      document.getElementById(btn).onclick = function() {
+        tabs.forEach(({btn, section}) => {
+          document.getElementById(btn).classList.remove('tab-active');
+          document.getElementById(btn).classList.add('text-gray-300');
+          document.getElementById(section).classList.add('hidden');
+        });
+        this.classList.add('tab-active');
+        this.classList.remove('text-gray-300');
+        document.getElementById(section).classList.remove('hidden');
+      };
+    });
+
+    // Dark Mode Toggle
+    document.getElementById('dark-mode-toggle').onclick = function() {
+      document.body.classList.toggle('bg-gray-900');
+      document.body.classList.toggle('bg-white');
+      document.body.classList.toggle('text-white');
+      document.body.classList.toggle('text-gray-900');
+    };
+
+    // Profile image upload preview
+    document.getElementById('profile-image-upload').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          document.getElementById('profile-avatar').src = evt.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Inline editing save
+    document.getElementById('save-profile').onclick = function() {
+      document.getElementById('profile-name').textContent = document.getElementById('edit-name').value;
+      alert('Profile updated!');
+    };
+  </script>
+</body>
+</html>

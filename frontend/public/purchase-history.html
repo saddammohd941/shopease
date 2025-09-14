@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopEase - Purchase History</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+  <header class="bg-gray-800 shadow-sm sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto py-4 px-4 flex items-center justify-between">
+      <div class="flex items-center">
+        <img src="logo.png" alt="ShopEase Logo" class="h-10 w-auto" />
+        <h1 class="text-3xl font-bold text-red-600 ml-3">ShopEase</h1>
+      </div>
+      <nav class="flex items-center space-x-6">
+        <a href="products.html" class="text-gray-300 hover:text-white font-medium">Shop</a>
+        <a href="support.html" class="text-gray-300 hover:text-white font-medium">Support</a>
+        <a href="profile.html" class="text-gray-300 hover:text-white font-medium">Profile</a>
+        <a href="cart.html" class="text-gray-300 hover:text-white font-medium">Cart</a>
+        <a href="purchase-history.html" class="text-red-600 font-bold">Purchase History</a>
+      </nav>
+    </div>
+  </header>
+  <main class="max-w-3xl mx-auto my-12 px-4">
+    <h2 class="text-3xl font-bold text-red-600 mb-6 text-center">Purchase History</h2>
+    <div class="bg-gray-800 rounded-lg shadow-lg p-8">
+      <!-- Example purchases -->
+      <div class="space-y-4">
+        <div class="flex justify-between items-center bg-gray-700 rounded px-4 py-2">
+          <div>
+            <span class="font-semibold text-white">Apple iPhone 17</span>
+            <span class="block text-gray-400 text-sm">Purchased: 2025-09-01</span>
+          </div>
+          <span class="text-red-400 font-medium">₹89,999</span>
+        </div>
+        <div class="flex justify-between items-center bg-gray-700 rounded px-4 py-2">
+          <div>
+            <span class="font-semibold text-white">Samsung Galaxy S25 Ultra</span>
+            <span class="block text-gray-400 text-sm">Purchased: 2025-08-15</span>
+          </div>
+          <span class="text-red-400 font-medium">₹1,09,999</span>
+        </div>
+        <div class="flex justify-between items-center bg-gray-700 rounded px-4 py-2">
+          <div>
+            <span class="font-semibold text-white">Nike Air Max Shoes</span>
+            <span class="block text-gray-400 text-sm">Purchased: 2025-07-22</span>
+          </div>
+          <span class="text-red-400 font-medium">₹7,499</span>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="bg-gray-800 text-gray-400 text-center py-6 mt-12">
+    <div class="max-w-7xl mx-auto py-8 px-4">
+      <div class="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+        &copy; 2025 ShopEase. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

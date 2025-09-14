@@ -16,7 +16,7 @@
 
     .spinner {
       border: 3px solid #f3f3f3;
-      border-top: 3px solid #ef4444; /* red */
+      border-top: 3px solid #ef4444;
       border-radius: 50%;
       width: 24px;
       height: 24px;
@@ -52,10 +52,29 @@
       font-family: 'Montserrat', 'Inter', sans-serif;
       letter-spacing: 1px;
     }
+
+    .contrast {
+      filter: invert(1) hue-rotate(180deg);
+    }
   </style>
 </head>
 
 <body class="bg-gray-900 text-white min-h-screen">
+
+  <!-- Accessibility Controls -->
+  <div class="fixed bottom-4 left-4 bg-gray-800 p-2 rounded shadow flex space-x-2 z-50">
+    <button onclick="document.body.style.fontSize='16px'" class="text-white" aria-label="Small Font">A-</button>
+    <button onclick="document.body.style.fontSize='20px'" class="text-white" aria-label="Large Font">A+</button>
+    <button onclick="document.body.classList.toggle('contrast')" class="text-white" aria-label="High Contrast">☀️</button>
+  </div>
+
+  <!-- Floating Support Chat Button -->
+  <button class="fixed bottom-8 right-8 bg-red-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-red-700 flex items-center z-50" aria-label="Chat Support">
+    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+    </svg>
+    Need Help?
+  </button>
 
   <!-- Header -->
   <header class="bg-gray-800 shadow-sm sticky top-0 z-40">
@@ -67,6 +86,7 @@
       <nav class="flex items-center space-x-6">
         <a href="products.html" class="text-gray-300 hover:text-white font-medium">Shop</a>
         <a href="support.html" class="text-gray-300 hover:text-white font-medium">Support</a>
+        <a href="faq.html" class="text-gray-300 hover:text-white font-medium">FAQ</a>
       </nav>
     </div>
   </header>
@@ -76,11 +96,11 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-4xl font-bold mb-4">Welcome to ShopEase</h2>
       <p class="text-lg mb-6">Sign in to explore premium products</p>
-      <div class="flex justify-center space-x-4">
+      <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
         <a href="signup.html"
           class="bg-red-600 text-white px-6 py-3 rounded-md font-medium hover:bg-red-700 transition">Sign Up</a>
         <button onclick="signinWithGoogle()"
-          class="bg-red-600 text-white px-6 py-3 rounded-md font-medium hover:bg-red-700 transition flex items-center">
+          class="bg-white text-gray-900 px-6 py-3 rounded-md font-medium hover:bg-gray-200 transition flex items-center border border-gray-300">
           <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24">
             <path fill="#4285F4"
               d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -93,6 +113,7 @@
           </svg>
           Google Sign In
         </button>
+        <button onclick="continueAsGuest()" class="bg-gray-700 text-white px-6 py-3 rounded-md font-medium hover:bg-gray-600 transition">Continue as Guest</button>
       </div>
     </div>
   </section>
@@ -102,21 +123,21 @@
     <div class="bg-gray-800 rounded-lg shadow-lg p-8">
       <h2 class="text-2xl font-semibold text-white text-center mb-2">Sign In</h2>
       <p class="text-center text-gray-400 text-sm mb-6">Access your account to continue shopping</p>
-      <form id="signin-form" class="space-y-6">
+      <form id="signin-form" class="space-y-6" autocomplete="off">
         <div>
-          <label for="signin-email" class="block text-sm text-gray-300 mb-1">Email Address</label>
+          <label for="signin-email" class="block text-sm text-gray-300 mb-1" aria-label="Email Address">Email Address</label>
           <input type="email" id="signin-email"
             class="w-full bg-gray-700 border border-gray-600 rounded-md p-3 text-sm text-white focus:ring-red-500 focus:border-red-600"
-            required />
+            required autocomplete="off" />
         </div>
         <div>
-          <label for="signin-password" class="block text-sm text-gray-300 mb-1">Password</label>
+          <label for="signin-password" class="block text-sm text-gray-300 mb-1" aria-label="Password">Password</label>
           <div class="relative">
             <input type="password" id="signin-password"
               class="w-full bg-gray-700 border border-gray-600 rounded-md p-3 text-sm text-white focus:ring-red-500 focus:border-red-600"
-              required minlength="6" />
+              required minlength="6" autocomplete="off" aria-describedby="password-strength" />
             <button type="button" id="toggle-password"
-              class="absolute inset-y-0 right-3 flex items-center text-gray-300 hover:text-white">
+              class="absolute inset-y-0 right-3 flex items-center text-gray-300 hover:text-white" aria-label="Show/Hide Password">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -124,12 +145,13 @@
                   d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
               </svg>
             </button>
+            <div id="password-strength" class="text-xs mt-2 text-gray-400"></div>
           </div>
         </div>
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <input type="checkbox" id="remember-me" class="h-4 w-4 text-red-600 border-gray-600 rounded" />
-            <label for="remember-me" class="ml-2 text-sm text-gray-300">Remember me</label>
+            <label for="remember-me" class="ml-2 text-sm text-gray-300" title="Keep me signed in on this device">Remember me</label>
           </div>
           <a href="forgot-password.html" class="text-red-600 hover:underline">Forgot Password?</a>
         </div>
@@ -145,228 +167,6 @@
       </p>
     </div>
   </main>
-
-  <!-- MOST SEARCHED FOR ON ShopEase Section -->
-  <div class="mt-8 p-4 rounded shadow w-full bg-gray-800 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h4 class="text-2xl font-bold text-red-600 mb-4 stylish-heading">MOST SEARCHED FOR ON ShopEase</h4>
-      <p class="text-gray-200 leading-relaxed mb-6">
-        <a href="/apple-iphone-17-black-256-gb/p/itm6eb39da622cdd" class="text-blue-400 hover:underline"
-          target="_blank">iPhone 17</a> |
-        <a href="/apple-iphone-air-space-black-256-gb/p/itm98092611013dd" class="text-blue-400 hover:underline"
-          target="_blank">iPhone Air</a> |
-        <a href="/apple-iphone-17-pro-cosmic-orange-256-gb/p/itm76fe37ca9ea8c" class="text-blue-400 hover:underline"
-          target="_blank">iPhone 17 Pro</a> |
-        <a href="/apple-iphone-17-pro-max-cosmic-orange-256-gb/p/itmd38e30731883a" class="text-blue-400 hover:underline"
-          target="_blank">iPhone 17 Pro Max</a> |
-        <a href="https://www.shopease.com/big-billion-days-store" class="text-blue-400 hover:underline"
-          target="_blank">Upcoming Big Billion Days 2025</a> |
-        <a href="https://www.shopease.com/early-bird-deals-store" class="text-blue-400 hover:underline"
-          target="_blank">Early Bird Offers Live Soon</a> |
-        <a href="/google-pixel-10-obsidian-256-gb/p/itm06bd3add90074" class="text-blue-400 hover:underline"
-          target="_blank">Google Pixel 10</a> |
-        <a href="/google-pixel-10-pro-obsidian-256-gb/p/itm112fb88d1f5a3" class="text-blue-400 hover:underline"
-          target="_blank">Google Pixel 10 Pro</a> |
-        <a href="/google-pixel-10-pro-xl-obsidian-256-gb/p/itmc94b4a1845747" class="text-blue-400 hover:underline"
-          target="_blank">Google Pixel 10 Pro XL</a> |
-        <a href="https://www.shopease.com/durga-puja-offers-store" class="text-blue-400 hover:underline"
-          target="_blank">Durga Puja Sale</a> |
-        <a href="https://www.shopease.com/dussehra-offers-store" class="text-blue-400 hover:underline"
-          target="_blank">Dussehra Sale</a> |
-        <a href="/infinix-gt-30-5g-pulse-green-128-gb/p/itm208df1e1a220e" class="text-blue-400 hover:underline"
-          target="_blank">Infinix GT 30 5g+</a> |
-        <a href="/samsung-galaxy-z-flip7-5g-black-512-gb/p/itmc200512d5867d" class="text-blue-400 hover:underline"
-          target="_blank">Samsung Galaxy Z Flip7 5G</a> |
-        <a href="/redmi-note-14-se-5g-crimson-art-128-gb/p/itm10fbd7f3a50f1" class="text-blue-400 hover:underline"
-          target="_blank">REDMI Note 14 SE 5G</a> |
-        <a href="/nothing-phone-3-white-256-gb/p/itm0c32a18b0df8a" class="text-blue-400 hover:underline"
-          target="_blank">Nothing Phone 3</a> |
-        <a href="/vivo-x200-fe-amber-yellow-256-gb/p/itmbb40443b79937" class="text-blue-400 hover:underline"
-          target="_blank">vivo X200 Fe</a> |
-        <a href="/audio-video/~soundbars-/pr?sid=0pm" class="text-blue-400 hover:underline" target="_blank">Soundbars</a> |
-        <a href="/audio-video/speakers/home-audio/soundbars/sony~brand/pr?sid=0pm,0o7,2to,ynx"
-          class="text-blue-400 hover:underline" target="_blank">Sony Soundbars</a> |
-        <a href="/q/airpods" class="text-blue-400 hover:underline" target="_blank">Airpods</a> |
-        <a href="/q/jbl-soundbar" class="text-blue-400 hover:underline" target="_blank">JBL Soundbars</a> |
-        <a href="/mobile-accessories/power-banks/urbn~brand/pr?sid=tyy,4mr,fu6" class="text-blue-400 hover:underline"
-          target="_blank">Urbn Power Banks</a> |
-        <a href="/audio-video/headset/earphones/wireless-earphones/true-wireless/goboult~brand/pr?sid=0pm,fcn,821,a7x,2si"
-          class="text-blue-400 hover:underline" target="_blank">Boult Wireless Earphones</a> |
-        <a href="/q/bose-soundbar" class="text-blue-400 hover:underline" target="_blank">Bose Soundbars</a> |
-        <a href="/q/oneplus-bullets-wireless-z" class="text-blue-400 hover:underline" target="_blank">Oneplus Wireless Earphones</a> |
-        <a href="/vivo-x-fold5-titanium-gray-512-gb/p/itm7a261c3ce8590" class="text-blue-400 hover:underline"
-          target="_blank">vivo X Fold 5</a> |
-        <a href="/motorola-edge-60-5g-pantone-gibraltar-sea-256-gb/p/itmc7ab8f1263d42" class="text-blue-400 hover:underline"
-          target="_blank">MOTOROLA Edge 60 5G</a> |
-        <a href="/samsung-galaxy-s25-edge-5g-titanium-silver-256-gb/p/itm58d92f4e3af14" class="text-blue-400 hover:underline"
-          target="_blank">SAMSUNG Galaxy S25 Edge</a> |
-        <a href="/motorola-razr-60/p/itmbad80b506f2c8" class="text-blue-400 hover:underline" target="_blank">MOTOROLA Razr 60</a> |
-        <a href="/cmf-nothing-phone-2-pro-5g-black-128-gb/p/itmf32457aeff519" class="text-blue-400 hover:underline"
-          target="_blank">CMF Phone 2 Pro</a> |
-        <a href="/google-pixel-9a-obsidian-256-gb/p/itmf9d1fcfa566cf" class="text-blue-400 hover:underline"
-          target="_blank">Google Pixel 9A</a> |
-        <a href="/samsung-galaxy-f16-5g-glam-green-128-gb/p/itm74165546d7c6c" class="text-blue-400 hover:underline"
-          target="_blank">SAMSUNG F16</a> |
-        <a href="/mobile-phones-store" class="text-blue-400 hover:underline" target="_blank">Mobile</a> |
-        <a href="/poco-m7-5g/p/itmf030852464eef" class="text-blue-400 hover:underline" target="_blank">POCO M7</a> |
-        <a href="/nothing-phone-3a-black-128-gb/p/itm49557c5a65f9c" class="text-blue-400 hover:underline"
-          target="_blank">Nothing Phone 3a</a> |
-        <a href="/apple-iphone-16e-white-128-gb/p/itm7971f594b0906" class="text-blue-400 hover:underline"
-          target="_blank">iPhone 16e</a> |
-        <a href="/samsung-galaxy-s25-ultra-5g-titanium-silverblue-512-gb/p/itm2ce28bbf75993" class="text-blue-400 hover:underline"
-          target="_blank">SAMSUNG Galaxy S25 Ultra</a> |
-        <a href="/samsung-galaxy-s25-plus-5g-silver-shadow-256-gb/p/itm8d76a9b476932" class="text-blue-400 hover:underline"
-          target="_blank">SAMSUNG Galaxy S25 Plus</a> |
-        <a href="/samsung-galaxy-s25-5g-icyblue-256-gb/p/itm3c1e495903acc" class="text-blue-400 hover:underline"
-          target="_blank">SAMSUNG Galaxy S25</a> |
-        <a href="/apple-iphone-16-white-128-gb/p/itm7c0281cd247be" class="text-blue-400 hover:underline"
-          target="_blank">iPhone 16</a> |
-        <a href="/apple-iphone-16-plus-teal-128-gb/p/itmfa939eebe8adf" class="text-blue-400 hover:underline"
-          target="_blank">iPhone 16 Plus</a> |
-        <a href="/apple-iphone-16-pro-white-titanium-128-gb/p/itm50f720fdcec51" class="text-blue-400 hover:underline"
-          target="_blank">iPhone 16 Pro</a> |
-        <a href="/apple-iphone-16-pro-max-black-titanium-256-gb/p/itm7e75db4f27bd5" class="text-blue-400 hover:underline"
-          target="_blank">iPhone 16 Pro Max</a> |
-        <a href="/vivo-v50-5g-rose-red-128-gb/p/itm12bbdca230795" class="text-blue-400 hover:underline"
-          target="_blank">vivo V50</a> |
-        <a href="/oppo-reno13-pro-5g-graphite-grey-256-gb/p/itmd9520193f28ac" class="text-blue-400 hover:underline"
-          target="_blank">OPPO Reno13 Pro</a> |
-        <a href="/poco-x7-5g/p/itm638304f590e26" class="text-blue-400 hover:underline" target="_blank">POCO X7</a> |
-        <a href="/realme-14-pro-5g-pearl-white-256-gb/p/itmb5105a70ea6a6" class="text-blue-400 hover:underline"
-          target="_blank">realme 14 Pro Plus</a> |
-        <a href="/redmi-note-14-pro-5g-spectre-blue-128-gb/p/itm7fa24a152cbc9" class="text-blue-400 hover:underline"
-          target="_blank">REDMI Note 14 Pro+ 5G</a> |
-        <a href="/oppo-find-x8-5g-space-black-512-gb/p/itm0e193d19d23ff" class="text-blue-400 hover:underline"
-          target="_blank">OPPO Find X8</a> |
-        <a href="/exchange-store" class="text-blue-400 hover:underline" target="_blank">ShopEase Exchange</a> |
-        <a href="/reset-sell-store" class="text-blue-400 hover:underline" target="_blank">Sell Old Phone</a>
-      </p>
-    </div>
-
-    <div class="mb-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h4 class="text-2xl font-bold text-red-600 mb-4 stylish-heading">MOBILES</h4>
-      <p class="text-gray-200 leading-relaxed">
-        <a href="/infinix-smart-10/p/itm0bde9cee1963a" class="text-blue-400 hover:underline" target="_blank">Infinix SMART 10</a> |
-        <a href="/oppo-reno14-pro-5g/p/itm17be6c392ab4c" class="text-blue-400 hover:underline" target="_blank">OPPO Reno 14 Pro</a> |
-        <a href="https://www.shopease.com/motorola-g64-5g-ambrosia-128-gb/p/itm6dfa6fef0e50a" class="text-blue-400 hover:underline" target="_blank">Motorola g64 5G</a> |
-        <a href="/oppo-reno-12-5g-astro-silver-256-gb/p/itmaa6baddef2662" class="text-blue-400 hover:underline" target="_blank">OPPO Reno 12</a> |
-        <a href="/motorola-edge-50-fusion/p/itm7d39b15599c7e" class="text-blue-400 hover:underline" target="_blank">Motorola Edge 50 Fusion</a> |
-        <a href="/redmi-12-5g-pastel-blue-128-gb/p/itm71f3d06ed5235" class="text-blue-400 hover:underline" target="_blank">REDMI 12 5G</a> |
-        <a href="/redmi-note-13-5g-arctic-white-256-gb/p/itm82475e073eb2e" class="text-blue-400 hover:underline" target="_blank">REDMI Note 13 5G</a> |
-        <a href="/realme-12-5g-navigator-beige-128-gb/p/itmaf084e49c78e2" class="text-blue-400 hover:underline" target="_blank">Realme 12+ 5G</a> |
-        <a href="/poco-c65-matte-black-128-gb/p/itm8ea3d87aa6c0c" class="text-blue-400 hover:underline" target="_blank">POCO C65</a> |
-        <a href="/motorola-g84-5g-marshmallow-blue-256-gb/p/itm7807a599d2202" class="text-blue-400 hover:underline" target="_blank">Motorola G84</a> |
-        <a href="/realme-c53-champion-gold-128-gb/p/itm5df90168ecd05" class="text-blue-400 hover:underline" target="_blank">Realme C53</a> |
-        <a href="/infinix-smart-8-rainbow-blue-64-gb/p/itmb5696a34ad441" class="text-blue-400 hover:underline" target="_blank">Infinix Smart 8</a> |
-        <a href="/samsung-galaxy-s23-5g-phantom-black-256-gb/p/itm347e695feffe7" class="text-blue-400 hover:underline" target="_blank">Samsung Galaxy S23 5G</a> |
-        <a href="/samsung-galaxy-s21-fe-5g-snapdragon-888-olive-256-gb/p/itmb3a0b1e650a0e" class="text-blue-400 hover:underline" target="_blank">Samsung Galaxy S21 FE 5G Qualcomm</a> |
-        <a href="/vivo-v30-5g-peacock-green-256-gb/p/itme3a94b78a025f" class="text-blue-400 hover:underline" target="_blank">vivo V30</a> |
-        <a href="/samsung-galaxy-s24-5g-amber-yellow-256-gb/p/itmebc700bb8d159" class="text-blue-400 hover:underline" target="_blank">Samsung Galaxy S24 5G</a> |
-        <a href="/samsung-galaxy-s24-5g-cobalt-violet-512-gb/p/itmdbe5ac49590db" class="text-blue-400 hover:underline" target="_blank">Samsung Galaxy S24+ 5G</a> |
-        <a href="/samsung-galaxy-s21-fe-5g-snapdragon-888-lavender-256-gb/p/itmb457a6d3826ee?pid=MOBGSXD7TV34MYXX" class="text-blue-400 hover:underline" target="_blank">SAMSUNG Galaxy S21 FE 5G</a> |
-        <a href="/infinix-hot-30i-diamond-white-64-gb/p/itm8b42a43b35895" class="text-blue-400 hover:underline" target="_blank">Infinix HOT 30i</a> |
-        <a href="/realme-10-pro-5g-dark-matter-128-gb/p/itm1e672d12a252e" class="text-blue-400 hover:underline" target="_blank">Realme 10 Pro 5G</a> |
-        <a href="/redmi-note-12-pro-5g-onyx-black-128-gb/p/itmbc9fd7adaa32a" class="text-blue-400 hover:underline" target="_blank">REDMI Note 12 Pro 5G</a> |
-        <a href="/q/motorola-5g-phone" class="text-blue-400 hover:underline" target="_blank">Motorola 5g Phone</a> |
-        <a href="/q/realme-5g-smartphone" class="text-blue-400 hover:underline" target="_blank">Realme 5g Smartphone</a> |
-        <a href="/q/apple-5g-phone" class="text-blue-400 hover:underline" target="_blank">Apple 5g Phone</a> |
-        <a href="/q/iqoo-5g-phones" class="text-blue-400 hover:underline" target="_blank">Iqoo 5g Phones</a> |
-        <a href="/q/oneplus-5g-phones" class="text-blue-400 hover:underline" target="_blank">Oneplus 5g Phones</a> |
-        <a href="/q/vivo-5g-phones" class="text-blue-400 hover:underline" target="_blank">Vivo 5g Phones</a> |
-        <a href="/q/oppo-5g-smart-phones" class="text-blue-400 hover:underline" target="_blank">Oppo 5g Smart Phones</a> |
-        <a href="/4g-mobile-phones-store" class="text-blue-400 hover:underline" target="_blank">4G Mobile</a> |
-        <a href="/nokia-mobile-phones-store" class="text-blue-400 hover:underline" target="_blank">Nokia Mobile</a> |
-        <a href="/samsung-mobile-store" class="text-blue-400 hover:underline" target="_blank">Samsung Mobile</a> |
-        <a href="/oppo-mobile-phones-store" class="text-blue-400 hover:underline" target="_blank">Oppo Mobile</a> |
-        <a href="/mobiles/vivo~brand/pr?sid=tyy,4io" class="text-blue-400 hover:underline" target="_blank">Vivo Mobile</a> |
-        <a href="/mobiles/apple~brand/pr?sid=tyy,4io" class="text-blue-400 hover:underline" target="_blank">Apple Mobile</a>
-      </p>
-    </div>
-
-    <div class="mb-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h4 class="text-2xl font-bold text-red-600 mb-4 stylish-heading">CAMERA</h4>
-      <p class="text-gray-200 leading-relaxed">
-        <a href="/gopro-hero-sports-action-camera/p/itmf3s4abpfgawhc" class="text-blue-400 hover:underline"
-          target="_blank">GoPro Action Camera</a> |
-        <a href="/cameras/nikon~brand/pr?sid=jek,p31" class="text-blue-400 hover:underline" target="_blank">Nikon Camera</a> |
-        <a href="/cameras/canon~brand/pr?sid=jek,p31" class="text-blue-400 hover:underline" target="_blank">Canon Camera</a> |
-        <a href="/q/sony-cameras" class="text-blue-400 hover:underline" target="_blank">Sony Camera</a> |
-        <a href="/q/canon-dslr-cameras" class="text-blue-400 hover:underline" target="_blank">Canon DSLR</a> |
-        <a href="/cameras/dslr-mirrorless/nikon~brand/pr?sid=jek,p31,trv" class="text-blue-400 hover:underline"
-          target="_blank">Nikon DSLR</a>
-      </p>
-    </div>
-
-    <div class="mb-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h4 class="text-2xl font-bold text-red-600 mb-4 stylish-heading">LAPTOPS</h4>
-      <p class="text-gray-200 leading-relaxed">
-        <a href="/avita-liber-core-i7-10th-gen-16-gb-1-tb-ssd-windows-10-home-ns14a8inr671-pag-thin-light-laptop/p/itmbe8a49652ca6f?pid=COMGQKQ7GGNFR8N4"
-          class="text-blue-400 hover:underline" target="_blank">Asus ROG Ally</a> |
-        <a href="/apple-2022-macbook-pro-m2-8-gb-256-gb-ssd-mac-os-monterey-mneh3hn-a/p/itmaea892f7dd66e"
-          class="text-blue-400 hover:underline" target="_blank">MacBook Pro M2</a> |
-        <a href="/q/premium-laptops" class="text-blue-400 hover:underline" target="_blank">Premium Laptop</a> |
-        <a href="asus-rog-strix-scar-16-2023-core-i9-13th-gen-32-gb-1-tb-ssd-windows-11-home-12-gb-graphics-nvidia-geforce-rtx-4080-g634jz-n4062ws-gaming-laptop/p/itma62818795454d"
-          class="text-blue-400 hover:underline" target="_blank">ASUS ROG Strix SCAR 16 (2023) Core i9 13th Gen</a> |
-        <a href="/asus-rog-zephyrus-m16-2023-core-i9-13th-gen-32-gb-2-tb-ssd-windows-11-home-16-gb-graphics-nvidia-geforce-rtx-4090-gu604vy-nm058ws-gaming-laptop/p/itm7ad23e5445edf"
-          class="text-blue-400 hover:underline" target="_blank">ASUS ROG Zephyrus M16 (2023) Core i9 13th Gen</a> |
-        <a href="/asus-zenbook-14-oled-2022-core-i5-12th-gen-16-gb-512-gb-ssd-windows-11-home-ux3402za-km531ws-thin-light-laptop/p/itm92e2e0518b654"
-          class="text-blue-400 hover:underline" target="_blank">ASUS Zenbook 14 OLED (2022)</a> |
-        <a href="/realme-book-prime-core-i5-11th-gen-16-gb-512-gb-ssd-windows-11-home-cloudpro002-thin-light-laptop/p/itm7d1b1a9d3579b"
-          class="text-blue-400 hover:underline" target="_blank">Realme Book Prime Core i5 11th Gen</a> |
-        <a href="/microsoft-surface-go-pentium-gold-8-gb-128-gb-ssd-windows-10-home-s-mode-1824-2-1-laptop/p/itmfb6pyjzy9y8n4"
-          class="text-blue-400 hover:underline" target="_blank">Microsoft Surface Go Pentium 128GB</a> |
-        <a href="/laptops/apple~brand/pr?sid=6bo,b5g" class="text-blue-400 hover:underline" target="_blank">Apple Laptops</a> |
-        <a href="/laptops/acer~brand/pr?sid=6bo,b5g" class="text-blue-400 hover:underline" target="_blank">Acer Laptops</a> |
-        <a href="/laptops/lenovo~brand/pr?sid=6bo,b5g" class="text-blue-400 hover:underline" target="_blank">Lenovo Laptops</a> |
-        <a href="/laptops/dell~brand/pr?sid=6bo,b5g" class="text-blue-400 hover:underline" target="_blank">Dell Laptops</a> |
-        <a href="/laptops/asus~brand/pr?sid=6bo,b5g" class="text-blue-400 hover:underline" target="_blank">Asus Laptops</a> |
-        <a href="/laptops/hp~brand/pr?sid=6bo,b5g" class="text-blue-400 hover:underline" target="_blank">HP Laptops</a> |
-        <a href="/gaming-laptops-store" class="text-blue-400 hover:underline" target="_blank">Gaming Laptops</a> |
-        <a href="/laptops/~2-in-1-laptops/pr?sid=6bo,b5g" class="text-blue-400 hover:underline" target="_blank">2 in 1 Laptops</a> |
-        <a href="/laptops-store" class="text-blue-400 hover:underline" target="_blank">Laptops</a> |
-        <a href="/q/dell-latest-laptops-2022" class="text-blue-400 hover:underline" target="_blank">Dell latest laptops 2022</a> |
-        <a href="/q/hp-latest-laptops-2022" class="text-blue-400 hover:underline" target="_blank">HP latest laptops 2022</a> |
-        <a href="/infinix-inbook-y1-plus-intel-core-i3-10th-gen-8-gb-256-gb-ssd-windows-11-home-xl28-thin-light-laptop/p/itm6c066be25ddde"
-          class="text-blue-400 hover:underline" target="_blank">Infinix INBook Y1 Plus</a> |
-        <a href="/samsung-galaxy-book3-core-i7-13th-gen-16-gb-512-gb-ssd-windows-11-home-thin-light-laptop/p/itmf5efb3b1c35fa"
-          class="text-blue-400 hover:underline" target="_blank">SAMSUNG Galaxy Book3</a> |
-        <a href="/q/12th-gen-intel-core-laptops" class="text-blue-400 hover:underline" target="_blank">12th Gen Intel Core Laptops</a>
-      </p>
-    </div>
-
-    <div class="mb-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h4 class="text-2xl font-bold text-red-600 mb-4 stylish-heading">CLOTHING</h4>
-      <p class="text-gray-200 leading-relaxed">
-        <a href="/men-tshirts-store" class="text-blue-400 hover:underline" target="_blank">Men T-Shirts</a> |
-        <a href="/women-kurtas-suits-store" class="text-blue-400 hover:underline" target="_blank">Women Kurtas & Suits</a> |
-        <a href="/mens-shirt-store" class="text-blue-400 hover:underline" target="_blank">Men Shirts</a> |
-        <a href="/q/kurta-pajama" class="text-blue-400 hover:underline" target="_blank">Kurta Pajama</a> |
-        <a href="/kids-clothing-store" class="text-blue-400 hover:underline" target="_blank">Kids Clothing</a>
-      </p>
-    </div>
-
-    <div class="mb-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h4 class="text-2xl font-bold text-red-600 mb-4 stylish-heading">FOOTWEAR</h4>
-      <p class="text-gray-200 leading-relaxed">
-        <a href="/mens-sports-shoes-store" class="text-blue-400 hover:underline" target="_blank">Men Sports Shoes</a> |
-        <a href="/womens-flats-store" class="text-blue-400 hover:underline" target="_blank">Women Flats</a> |
-        <a href="/mens-formal-shoes-store" class="text-blue-400 hover:underline" target="_blank">Men Formal Shoes</a> |
-        <a href="/womens-sports-shoes-store" class="text-blue-400 hover:underline" target="_blank">Women Sports Shoes</a> |
-        <a href="/mens-casual-shoes-store" class="text-blue-400 hover:underline" target="_blank">Men Casual Shoes</a>
-      </p>
-    </div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h4 class="text-2xl font-bold text-red-600 mb-4 stylish-heading">GROCERIES</h4>
-      <p class="text-gray-200 leading-relaxed">
-        <a href="/q/grocery-essential" class="text-blue-400 hover:underline" target="_blank">Grocery Essentials</a> |
-        <a href="/q/daily-essentials" class="text-blue-400 hover:underline" target="_blank">Daily Essentials</a> |
-        <a href="/q/atta-flour" class="text-blue-400 hover:underline" target="_blank">Atta & Flour</a> |
-        <a href="/q/rice" class="text-blue-400 hover:underline" target="_blank">Rice</a> |
-        <a href="/q/oil-ghee" class="text-blue-400 hover:underline" target="_blank">Oil & Ghee</a>
-      </p>
-    </div>
-  </div>
 
   <!-- Toast Notification -->
   <div id="toast"
@@ -385,21 +185,23 @@
           <ul class="mt-2 space-y-2 text-sm text-gray-400">
             <li><a href="products.html" class="hover:text-red-600">Shop</a></li>
             <li><a href="support.html" class="hover:text-red-600">Support</a></li>
-            <li><a href="#" class="hover:text-red-600">FAQ</a></li>
+            <li><a href="faq.html" class="hover:text-red-600">FAQ</a></li>
+            <li><a href="privacy.html" class="hover:text-red-600">Privacy Policy</a></li>
+            <li><a href="terms.html" class="hover:text-red-600">Terms of Service</a></li>
           </ul>
         </div>
         <div>
           <h3 class="text-lg font-semibold text-white">Connect</h3>
           <div class="mt-2 flex space-x-4">
-            <a href="#" class="text-gray-400 hover:text-red-600">
+            <a href="#" class="text-gray-400 hover:text-red-600" aria-label="Facebook">
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" />
+                <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.326v21.348C0 23.4.6 24 1.326 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.4 24 24 23.4 24 22.674V1.326C24 .6 23.4 0 22.675 0" />
               </svg>
             </a>
-            <a href="#" class="text-gray-400 hover:text-red-600">
+            <a href="#" class="text-gray-400 hover:text-red-600" aria-label="Twitter">
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.06-4.3 2.7-8 7-8 1.8 0 3.5.7 4.7 2z" />
+                <path d="M24 4.557a9.93 9.93 0 01-2.828.775 4.932 4.932 0 002.165-2.724c-.951.555-2.005.959-3.127 1.184A4.916 4.916 0 0016.616 3c-2.717 0-4.92 2.206-4.92 4.917 0 .386.044.762.127 1.124C7.728 8.797 4.1 6.884 1.671 3.149c-.423.724-.666 1.561-.666 2.475 0 1.708.87 3.216 2.188 4.099a4.904 4.904 0 01-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 01-2.224.084c.627 1.956 2.444 3.377 4.6 3.417A9.867 9.867 0 010 21.543a13.94 13.94 0 007.548 2.212c9.058 0 14.009-7.513 14.009-14.009 0-.213-.005-.425-.014-.636A10.025 10.025 0 0024 4.557z" />
+              </svg>
             </a>
           </div>
         </div>
@@ -412,6 +214,7 @@
 
   <!-- Scripts -->
   <script>
+    // Password show/hide
     const passwordInput = document.getElementById('signin-password');
     const togglePassword = document.getElementById('toggle-password');
     togglePassword.addEventListener('click', () => {
@@ -419,21 +222,44 @@
       passwordInput.setAttribute('type', type);
     });
 
+    // Password strength indicator
+    passwordInput.addEventListener('input', function () {
+      const val = passwordInput.value;
+      const strength = document.getElementById('password-strength');
+      if (val.length < 6) {
+        strength.textContent = 'Too short';
+        strength.className = 'text-xs mt-2 text-red-400';
+      } else if (val.match(/[A-Z]/) && val.match(/[0-9]/) && val.length >= 8) {
+        strength.textContent = 'Strong password';
+        strength.className = 'text-xs mt-2 text-green-400';
+      } else {
+        strength.textContent = 'Medium strength';
+        strength.className = 'text-xs mt-2 text-yellow-400';
+      }
+    });
+
+    // Sign in form
     const signinForm = document.getElementById('signin-form');
     const signinButtonText = document.getElementById('signin-button-text');
     const signinSpinner = document.getElementById('signin-spinner');
     const toast = document.getElementById('toast');
+    const signinError = document.getElementById('signin-error');
 
     signinForm.addEventListener('submit', (e) => {
       e.preventDefault();
       signinButtonText.classList.add('hidden');
       signinSpinner.classList.remove('hidden');
-
+      signinError.classList.add('hidden');
       // Simulate API call
       setTimeout(() => {
         signinButtonText.classList.remove('hidden');
         signinSpinner.classList.add('hidden');
-        showToast('Signed in successfully!');
+        if (document.getElementById('signin-email').value === "" || passwordInput.value.length < 6) {
+          signinError.textContent = "Invalid credentials. Please check your email and password.";
+          signinError.classList.remove('hidden');
+        } else {
+          showToast('Signed in successfully!');
+        }
       }, 1500);
     });
 
@@ -450,8 +276,14 @@
     function signinWithGoogle() {
       showToast('Google Sign In clicked!');
     }
-  </script>
 
+    function continueAsGuest() {
+      showToast('Continuing as guest...');
+      setTimeout(() => {
+        window.location.href = "products.html";
+      }, 1200);
+    }
+  </script>
 </body>
 
 </html>
