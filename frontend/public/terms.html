@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopEase - Terms of Service</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .hero-bg { background: linear-gradient(to bottom right, #1e1e1e, #2c2c2c); }
+    .section { margin-bottom: 2rem; }
+    .section button { transition: all 0.3s ease; }
+    .section button:hover { background-color: rgba(255, 255, 255, 0.05); }
+    .section-content { 
+      max-height: 0; 
+      overflow: hidden; 
+      transition: max-height 0.3s ease, padding 0.3s ease; 
+      display: none; 
+      padding: 0 1rem;
+    }
+    .section-content.open { 
+      max-height: 200px; 
+      display: block; 
+      padding: 1rem;
+    }
+    .toast { transition: opacity 0.3s ease, transform 0.3s ease; }
+    .toast-hidden { opacity: 0; transform: translateY(20px); }
+    .toast-visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-gray-800 shadow-sm sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div class="flex items-center">
+        <img src="logo.png" alt="ShopEase Logo" class="h-10 w-auto" />
+        <h1 class="text-3xl font-bold text-red-600 ml-3">ShopEase</h1>
+      </div>
+      <nav class="flex items-center space-x-6">
+        <a href="index.html" class="text-gray-300 hover:text-white font-medium">Sign In</a>
+        <a href="products.html" class="text-gray-300 hover:text-white font-medium">Shop</a>
+        <a href="support.html" class="text-gray-300 hover:text-white font-medium">Support</a>
+        <a href="terms.html" class="text-red-600 font-bold">Terms of Service</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-bg py-16 text-white text-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold mb-4">Terms of Service</h2>
+      <p class="text-lg mb-6">Last updated: September 15, 2025</p>
+    </div>
+  </section>
+
+  <!-- Terms Content -->
+  <main class="max-w-4xl mx-auto my-12 px-4 sm:px-6 lg:px-8">
+    <div class="bg-gray-800 rounded-lg shadow-lg p-8 prose prose-invert max-w-none">
+      <div class="section">
+        <button class="w-full text-left p-4 font-semibold text-xl text-red-600 border-b border-gray-700 flex justify-between items-center">
+          <span>1. Acceptance of Terms</span>
+          <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="section-content text-gray-300 text-sm">
+          <p>By accessing or using ShopEase, you agree to these Terms of Service. If you do not agree, please do not use our services.</p>
+        </div>
+      </div>
+      <div class="section">
+        <button class="w-full text-left p-4 font-semibold text-xl text-red-600 border-b border-gray-700 flex justify-between items-center">
+          <span>2. User Accounts</span>
+          <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="section-content text-gray-300 text-sm">
+          <p>You must provide accurate information during registration. Accounts are for personal use only.</p>
+        </div>
+      </div>
+      <div class="section">
+        <button class="w-full text-left p-4 font-semibold text-xl text-red-600 border-b border-gray-700 flex justify-between items-center">
+          <span>3. Products and Orders</span>
+          <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="section-content text-gray-300 text-sm">
+          <p>All products are subject to availability. We reserve the right to cancel orders at any time.</p>
+        </div>
+      </div>
+      <div class="section">
+        <button class="w-full text-left p-4 font-semibold text-xl text-red-600 border-b border-gray-700 flex justify-between items-center">
+          <span>4. Payments and Refunds</span>
+          <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="section-content text-gray-300 text-sm">
+          <p>Payments are processed securely via Stripe. Refunds are issued per our return policy.</p>
+        </div>
+      </div>
+      <div class="section">
+        <button class="w-full text-left p-4 font-semibold text-xl text-red-600 border-b border-gray-700 flex justify-between items-center">
+          <span>5. Intellectual Property</span>
+          <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="section-content text-gray-300 text-sm">
+          <p>All content on ShopEase is owned by us or our licensors. Unauthorized use is prohibited.</p>
+        </div>
+      </div>
+      <div class="section">
+        <button class="w-full text-left p-4 font-semibold text-xl text-red-600 border-b border-gray-700 flex justify-between items-center">
+          <span>6. Limitation of Liability</span>
+          <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="section-content text-gray-300 text-sm">
+          <p>We are not liable for indirect damages. Our liability is limited to the amount paid by you.</p>
+        </div>
+      </div>
+      <div class="section">
+        <button class="w-full text-left p-4 font-semibold text-xl text-red-600 border-b border-gray-700 flex justify-between items-center">
+          <span>7. Governing Law</span>
+          <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="section-content text-gray-300 text-sm">
+          <p>These terms are governed by the laws of [Your Jurisdiction].</p>
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <a href="support.html" class="bg-red-600 text-white px-6 py-3 rounded-md font-medium hover:bg-red-700 transition">Contact Us for Questions</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast toast-hidden fixed bottom-6 right-6 px-6 py-3 rounded-md shadow-lg z-50 text-white"></div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-400 text-center py-6 mt-12">
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold text-white">ShopEase</h3>
+          <p class="text-gray-400 text-sm mt-2">Your one-stop shop for premium products with seamless shopping experiences.</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-white">Quick Links</h3>
+          <ul class="mt-2 space-y-2 text-sm text-gray-400">
+            <li><a href="products.html" class="hover:text-red-600">Shop</a></li>
+            <li><a href="support.html" class="hover:text-red-600">Support</a></li>
+            <li><a href="faq.html" class="hover:text-red-600">FAQ</a></li>
+            <li><a href="privacy.html" class="hover:text-red-600">Privacy Policy</a></li>
+            <li><a href="terms.html" class="hover:text-red-600">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="mt-0">
+          <h3 class="text-lg font-semibold text-white mb-4">Connect</h3>
+          <div class="flex items-center justify-center space-x-6">
+            <a href="#" class="text-gray-400 hover:text-red-600" aria-label="Facebook">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.326v21.348C0 23.4.6 24 1.326 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.4 24 24 23.4 24 22.674V1.326C24 .6 23.4 0 22.675 0" />
+              </svg>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-red-600" aria-label="Twitter">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 4.557a9.93 9.93 0 01-2.828.775 4.932 4.932 0 002.165-2.724c-.951.555-2.005.959-3.127 1.184A4.916 4.916 0 0016.616 3c-2.717 0-4.92 2.206-4.92 4.917 0 .386.044.762.127 1.124C7.728 8.797 4.1 6.884 1.671 3.149c-.423.724-.666 1.561-.666 2.475 0 1.708.87 3.216 2.188 4.099a4.904 4.904 0 01-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 01-2.224.084c.627 1.956 2.444 3.377 4.6 3.417A9.867 9.867 0 010 21.543a13.94 13.94 0 007.548 2.212c9.058 0 14.009-7.513 14.009-14.009 0-.213-.005-.425-.014-.636A10.025 10.025 0 0024 4.557z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+        &copy; 2025 ShopEase. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Accordion for Terms Sections
+    document.querySelectorAll('.section button').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('svg');
+        const isOpen = content.classList.contains('open');
+
+        // Log for debugging
+        console.log(`Clicked: ${button.querySelector('span').textContent}, isOpen: ${isOpen}`);
+
+        // Toggle the clicked section
+        if (isOpen) {
+          content.classList.remove('open');
+          icon.style.transform = 'rotate(0deg)';
+        } else {
+          // Close all other sections
+          document.querySelectorAll('.section-content').forEach(c => {
+            c.classList.remove('open');
+            const parentIcon = c.previousElementSibling.querySelector('svg');
+            parentIcon.style.transform = 'rotate(0deg)';
+          });
+          // Open the clicked section
+          content.classList.add('open');
+          icon.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+
+    // Ensure all section content is hidden on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.section-content').forEach(content => {
+        content.classList.remove('open');
+        console.log(`Hiding content: ${content.textContent.trim().substring(0, 20)}...`);
+      });
+      document.querySelectorAll('.section button svg').forEach(icon => {
+        icon.style.transform = 'rotate(0deg)';
+      });
+    });
+
+    // Toast function (placeholder)
+    function showToast(message, bgClass = 'bg-red-600') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast toast-visible fixed bottom-6 right-6 px-6 py-3 rounded-md shadow-lg z-50 text-white ${bgClass}`;
+      setTimeout(() => {
+        toast.classList.remove('toast-visible');
+        toast.classList.add('toast-hidden');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

@@ -1,7 +1,84 @@
-/* Base styles for ShopEase frontend */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f4f4f4;
+/* Smaller container box */
+.box {
+  width: max-content; /* adjusts to button size */
+  padding: 5px;      /* reduced from 10px to make the box even smaller */
+  background-color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  margin: 50px auto;
+}
+
+/* Universal base styles (unchanged) */
+button,
+a {
+  display: inline-block;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  font-weight: 100;
+  border-radius: 8px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  color: #fff;
+  font-family: inherit;
+  outline: none;
+}
+
+/* Netflix-style scale + shadow + glow + smooth color transition (unchanged) */
+button:hover,
+a:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  color: #da0b0b;
+}
+
+/* Animated Gradient Background on Hover (unchanged) */
+button::before,
+a::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, #da0b0b, #da0b0b, #da0b0b);
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: rotate(0deg);
+  z-index: -1;
+}
+
+button:hover::before,
+a:hover::before {
+  opacity: 0.4;
+  transform: rotate(45deg);
+}
+
+/* Ripple effect on click (unchanged) */
+button:active::after,
+a:active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple 0.6s linear;
+  z-index: 1;
+}
+
+@keyframes ripple {
+  to {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
 }
